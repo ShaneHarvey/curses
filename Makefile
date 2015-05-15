@@ -1,19 +1,11 @@
-CC=gcc
 LIBS=-lncurses
+BINS=clife
+CFLAGS=-Wall -Werror
 
-SRC_DIR=.
-EXE_DIR=./exe
+%: %.c
+	$(CC) $(CFLAGS) $(LIBS) -o $@ $<
 
-EXES = \
-    ${EXE_DIR}/clife
-
-${EXE_DIR}/%: %.o
-	${CC} -o $@ $< ${LIBS}
-
-%.o: ${SRC_DIR}/%.c
-	${CC} -o $@ -c $<
-
-all:    ${EXES}
+all: $(BINS)
 
 clean:
-	@rm -f ${EXES}
+	@rm -f $(BINS)
